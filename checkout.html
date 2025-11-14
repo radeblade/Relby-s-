@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Checkout Relby's</title>
+    <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+
+<header>
+    <nav class="navbar section-content">
+        <div class="nav-actions">
+            <button class="hamburger" aria-label="Open menu">☰</button>
+            <a href="/login.html" class="login-button">Login or Sign-up</a>
+        </div>
+        <a href="/index.html" class="nav-logo">
+            <h2 class="logo-text">Relby's</h2>
+        </a>
+    </nav>
+
+    <div class="blur-overlay" id="blurOverlay"></div>
+    <div class="slide-menu" id="slideMenu">
+        <button class="close-btn" id="closeBtn" aria-label="Close menu">×</button>
+        <ul class="nav-menu">
+            <li><a href="/index.html" class="nav-link nav-item">Home</a></li>
+            <li><a href="/about.html" class="nav-link nav-item">About</a></li>
+            <li><a href="/menu.html" class="nav-link nav-item">Menu</a></li>
+            <li><a href="/profile.html" class="nav-link nav-item">Profile</a></li>
+            <li><a href="/feedback.html" class="nav-link nav-item">Feedback</a></li>
+            <li><a href="/checkout.html" class="nav-link nav-item">Checkout</a></li>
+        </ul>
+        <div class="nav-footer">Relby's</div>
+    </div>
+</header>
+
+<main>
+    <section class="checkout-section">
+        <div class="section-content">
+            <h2 class="hero-checkout-title">Checkout</h2>
+
+            <div class="checkout-wrapper">
+                <!-- Receipt Box -->
+                <div class="checkout-box">
+                <h3>Order Summary</h3>
+                <ul class="checkout-items"></ul>
+
+                <div class="checkout-customer">
+                    <strong>Customer:</strong> <span id="customerEmail"></span>
+                </div>
+
+                <div class="checkout-total"></div>
+                <div class="checkout-error" id="cartError"></div>
+
+                </div>
+
+                <!-- Payment Box -->
+                <div class="checkout-box">
+                    <h3>Payment Details</h3>
+
+                    <label for="cardNumber">Credit Card Number</label>
+                    <input type="text" id="cardNumber" placeholder="XXXX XXXX XXXX XXXX" />
+
+                    <label for="mobileNumber">Mobile Number</label>
+                    <div class="mobile-wrapper">
+                        <span class="mobile-prefix">+63</span>
+                        <input type="text" id="mobileNumber" maxlength="10" placeholder="XXXXXXXXXX" />
+                    </div>
+
+                    <label for="address">Delivery Address</label>
+                    <input type="text" id="address" placeholder="Street, Barangay, City, Province" />
+
+                    <button id="confirmPayment">Confirm Payment</button>
+                    <div class="checkout-error" id="paymentError"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <h2>Contact Us:</h2>
+                <p>📞 Phone: +63 912 345 6789</p>
+                <p>📧 Email: contact@relbys.com</p>
+            </div>
+            <div class="copyright">
+                <p>© 2025 Relby's. All rights reserved.</p>
+                <p>This site and its content are protected under Philippine Copyright law (Republic Act No. 8293). Unauthorized use is prohibited.</p>
+            </div>
+        </div>
+    </section>
+</main>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="/main.js"></script>
+<script src="/auth.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const addressInput = document.getElementById("address");
+        const cardInput = document.getElementById("cardNumber");
+        const mobileInput = document.getElementById("mobileNumber");
+        const confirmBtn = document.getElementById("confirmPayment");
+        const errorMsg = document.getElementById("paymentError");
+
+        const cartList = document.querySelector(".checkout-items");
+        const totalDisplay = document.querySelector(".checkout-total");
+        const customerEmail = document.getElementById("customerEmail");
+
+        // 🛒 Load cart from localStorage
+        const cart = JSON.parse(localStorage.getItem("relbyCart")) || [];
+        let total = 0;
+        cartList.innerHTML = "";
+
+        cart.forEach(item => {
+            const li = document.createElement("li");
+            li.textContent = `${item.name} × ${item.quantity} — ${item.price}`;
+            cartList.appendChild(li);
+
+            const numericPrice = parseFloat(item.price.replace(/[^\d.]/g, ""));
+            total += numericPrice * item.quantity;
+        });
+
+        totalDisplay.textContent = `Total: ₱${total.toFixed(2)}`;
+
+        // 👤 Load user email if authenticated
+        firebase.auth().onAuthStateChanged(user => {
+            if (user && user.email) {
+                customerEmail.textContent = user.email;
+            }
+        });
+
+        // 💳 Payment validation
+        confirmBtn.addEventListener("click", () => {
+            const card = cardInput.value.replace(/\s+/g, "");
+            const mobile = mobileInput.value.trim();
+            const address = addressInput.value.trim();
+            const usingCard = card.length > 0;
+            const usingMobile = mobile.length > 0;
+
+            const cartItems = cartList.querySelectorAll("li");
+            const cartError = document.getElementById("cartError");
+
+            // Reset errors
+            errorMsg.style.display = "none";
+            errorMsg.textContent = "";
+            cartError.style.display = "none";
+            cartError.textContent = "";
+
+            // Cart empty check
+            if (cartItems.length === 0) {
+                cartError.textContent = "Your cart is empty. Please add items before confirming payment.";
+                cartError.style.display = "block";
+                return;
+            }
+
+            // Payment method validation
+            if (usingCard && usingMobile) {
+                showError("Please choose only one payment method: credit card or mobile number.");
+                return;
+            }
+
+            if (!usingCard && !usingMobile) {
+                showError("Please enter a payment method.");
+                return;
+            }
+
+            // Address validation
+            if (address === "") {
+                showError("Address cannot be empty.");
+                addressInput.focus();
+                return;
+            }
+
+            // Card validation
+            if (usingCard && !isValidCard(card)) {
+                showError("Invalid credit card number.");
+                cardInput.focus();
+                return;
+            }
+
+            // Mobile validation
+            if (usingMobile && (mobile.length !== 10 || !/^\d{10}$/.test(mobile))) {
+                showError("Mobile number must be 10 digits after +63.");
+                mobileInput.focus();
+                return;
+            }
+
+            // ✅ Success flow
+            alert("Payment successful! Items will be delivered to your address.");
+            localStorage.removeItem("relbyCart");
+
+            // Determine payment method
+            let paymentMethod = "";
+            if (usingCard) {
+                paymentMethod = "Credit Card";
+            } else if (usingMobile) {
+                paymentMethod = "Mobile Payment (+63)";
+            }
+
+            // Update receipt summary only
+            const receiptSummary = document.createElement("div");
+            receiptSummary.classList.add("checkout-summary-extra");
+
+            // Mask sensitive info
+            const maskedCard = usingCard ? `**** **** **** ${card.slice(-4)}` : "";
+            const maskedMobile = usingMobile ? `+63 **** *** ${mobile.slice(-4)}` : "";
+
+            receiptSummary.innerHTML = `
+              <p><strong>Payment Method:</strong> ${paymentMethod}</p>
+              ${usingCard ? `<p><strong>Card:</strong> ${maskedCard}</p>` : ""}
+              ${usingMobile ? `<p><strong>Mobile:</strong> ${maskedMobile}</p>` : ""}
+              <p><strong>Delivery Address:</strong> ${address}</p>`;
+            cartList.appendChild(receiptSummary);
+
+            // Disable confirm button
+            confirmBtn.disabled = true;
+            confirmBtn.textContent = "Payment Confirmed";
+            confirmBtn.style.opacity = "0.6";
+            confirmBtn.style.cursor = "not-allowed";
+
+            // Clear inputs only
+            cardInput.value = "";
+            mobileInput.value = "";
+            addressInput.value = "";
+        });
+
+        function showError(msg) {
+            errorMsg.textContent = msg;
+            errorMsg.style.display = "block";
+        }
+
+        function isValidCard(number) {
+            let sum = 0;
+            let shouldDouble = false;
+
+            for (let i = number.length - 1; i >= 0; i--) {
+                let digit = parseInt(number[i]);
+                if (shouldDouble) {
+                    digit *= 2;
+                    if (digit > 9) digit -= 9;
+                }
+                sum += digit;
+                shouldDouble = !shouldDouble;
+            }
+
+            return sum % 10 === 0;
+        }
+    });
+</script>
+</body>
+</html>

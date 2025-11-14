@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Relby's</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<header>
+    <nav class="navbar section-content">
+        <div class="nav-actions">
+            <button class="hamburger" aria-label="Open menu">☰</button>
+        </div>
+        <a href="/index.html" class="nav-logo">
+            <h2 class="logo-text">Relby's</h2>
+        </a>
+    </nav>
+
+    <div class="blur-overlay" id="blurOverlay"></div>
+    <div class="slide-menu" id="slideMenu">
+        <button class="close-btn" id="closeBtn" aria-label="Close menu">×</button>
+        <ul class="nav-menu">
+            <li><a href="/index.html" class="nav-link nav-item">Home</a></li>
+            <li><a href="/about.html" class="nav-link nav-item">About</a></li>
+            <li><a href="/menu.html" class="nav-link nav-item">Menu</a></li>
+            <li><a href="/profile.html" class="nav-link nav-item">Profile</a></li>
+            <li><a href="/feedback.html" class="nav-link nav-item">Feedback</a></li>
+            <li><a href="/checkout.html" class="nav-link nav-item">Checkout</a></li>
+        </ul>
+        <div class="nav-footer">Relby's</div>
+    </div>
+</header>
+
+<main>
+    <section class="login-section" id="login">
+        <h2>Log-in</h2>
+        <p>Log in to access your account and enjoy personalized features.</p>
+        <form class="login-form" id="loginForm" novalidate>
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required>
+            <span class="error-message" id="emailError"></span>
+
+            <label for="password">Password:</label>
+            <div class="password-wrapper">
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <span class="error-message" id="passwordError"></span>
+
+            <button type="submit" class="submit-btn">Login</button>
+
+        </form>
+        <p class="signup-prompt">Don't have an account? <a href="sign_up.html">Sign up here</a>.</p>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <h2>Contact Us:</h2>
+                <p>📞 Phone: +63 912 345 6789</p>
+                <p>📧 Email: contact@relbys.com</p>
+            </div>
+
+            <div class="copyright">
+                <p>© 2025 Relby's. All rights reserved.</p>
+                <p>This site and its content are protected under Philippine Copyright law (Republic Act No. 8293). Unauthorized use is prohibited.</p>
+            </div>
+        </div>
+    </section>
+</main>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+<script src="login.js"></script>
+<script src="/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feedback Relby's</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<header>
+    <nav class="navbar section-content">
+        <div class="nav-actions">
+            <button class="hamburger" aria-label="Open menu">☰</button>
+            <a href="login.html" class="login-button">Login or Sign-up</a>
+        </div>
+        <a href="index.html" class="nav-logo">
+            <h2 class="logo-text">Relby's</h2>
+        </a>
+    </nav>
+
+    <div class="blur-overlay" id="blurOverlay"></div>
+    <div class="slide-menu" id="slideMenu">
+        <button class="close-btn" id="closeBtn" aria-label="Close menu">×</button>
+        <ul class="nav-menu">
+            <li><a href="/index.html" class="nav-link nav-item">Home</a></li>
+            <li><a href="/about.html" class="nav-link nav-item">About</a></li>
+            <li><a href="/menu.html" class="nav-link nav-item">Menu</a></li>
+            <li><a href="/profile.html" class="nav-link nav-item">Profile</a></li>
+            <li><a href="/feedback.html" class="nav-link nav-item">Feedback</a></li>
+            <li><a href="/checkout.html" class="nav-link nav-item">Checkout</a></li>
+        </ul>
+        <div class="nav-footer">Relby's</div>
+    </div>
+</header>
+
+<main>
+    <section class="feedback-section" id="feedback">
+        <h2>We Value Your Feedback</h2>
+        <p>Let us know how we can improve your experience.</p>
+        <form class="feedback-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <h2>Contact Us:</h2>
+                <p>📞 Phone: +63 912 345 6789</p>
+                <p>📧 Email: contact@relbys.com</p>
+            </div>
+
+            <div class="copyright">
+                <p>© 2025 Relby's. All rights reserved.</p>
+                <p>This site and its content are protected under Philippine Copyright law (Republic Act No. 8293). Unauthorized use is prohibited.</p>
+            </div>
+        </div>
+    </section>
+</main>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+<script src="/feedback.js"></script>
+<script src="/auth.js"></script>
+</body>
+</html>

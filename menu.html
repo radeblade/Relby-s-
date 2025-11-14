@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu Relby's</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<header>
+    <nav class="navbar section-content">
+        <div class="nav-actions">
+            <button class="hamburger" aria-label="Open menu">☰</button>
+            <a href="/login.html" class="login-button">Login or Sign-up</a>
+        </div>
+        <a href="/index.html" class="nav-logo">
+            <h2 class="logo-text">Relby's</h2>
+        </a>
+    </nav>
+
+    <div class="blur-overlay" id="blurOverlay"></div>
+    <div class="slide-menu" id="slideMenu">
+        <button class="close-btn" id="closeBtn" aria-label="Close menu">×</button>
+        <ul class="nav-menu">
+            <li><a href="/index.html" class="nav-link nav-item">Home</a></li>
+            <li><a href="/about.html" class="nav-link nav-item">About</a></li>
+            <li><a href="/menu.html" class="nav-link nav-item">Menu</a></li>
+            <li><a href="/profile.html" class="nav-link nav-item">Profile</a></li>
+            <li><a href="/feedback.html" class="nav-link nav-item">Feedback</a></li>
+            <li><a href="/checkout.html" class="nav-link nav-item">Checkout</a></li>
+        </ul>
+        <div class="nav-footer">Relby's</div>
+    </div>
+</header>
+
+<main>
+    <section class="menu-section" id="menu">
+        <div class="section-content">
+            <h2 class="hero-menu-title">Our Menu</h2>
+
+            <div class="hero-menu-layout">
+                <!-- Left Column: Menu Categories -->
+                <div class="hero-menu-categories">
+                    <!-- Food Category -->
+                    <div class="hero-menu-group">
+                        <h3 class="hero-menu-heading">Food</h3>
+                        <ul class="hero-menu-list">
+                            <li class="hero-menu-item">
+                                <img src="burger-frenchfries.png" alt="Classic Burger" class="hero-item-image">
+                                <div class="hero-item-info">
+                                    <span class="hero-item-name">Classic Burger</span>
+                                    <span class="hero-item-price">₱199</span>
+                                </div>
+                                <label>
+                                    <input type="number" min="0" value="0" class="hero-item-quantity">
+                                </label>
+                                <button class="hero-add-to-cart">Add to Cart</button>
+
+                            <li class="hero-menu-item">
+                                <img src="hotdog.png" alt="Hotdog" class="hero-item-image">
+                                <div class="hero-item-info">
+                                    <span class="hero-item-name">Classic Hotdog</span>
+                                    <span class="hero-item-price">₱179</span>
+                                </div>
+                                <label>
+                                    <input type="number" min="0" value="0" class="hero-item-quantity">
+                                </label>
+                                <button class="hero-add-to-cart">Add to Cart</button>
+
+                            <li class="hero-menu-item">
+                                <img src="infamous%20Steak.png" alt="Steak" class="hero-item-image">
+                                <div class="hero-item-info">
+                                    <span class="hero-item-name">Infamous Steak</span>
+                                    <span class="hero-item-price">₱499</span>
+                                </div>
+                                <label>
+                                    <input type="number" min="0" value="0" class="hero-item-quantity">
+                                </label>
+                                <button class="hero-add-to-cart">Add to Cart</button>
+
+                            <li class="hero-menu-item">
+                                <img src="grilled%20Barbecue.png" alt="Grilled Barbecue" class="hero-item-image">
+                                <div class="hero-item-info">
+                                    <span class="hero-item-name">Grilled Barbecue</span>
+                                    <span class="hero-item-price">₱399</span>
+                                </div>
+                                <label>
+                                    <input type="number" min="0" value="0" class="hero-item-quantity">
+                                </label>
+                                <button class="hero-add-to-cart">Add to Cart</button>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <!-- Drinks Category -->
+                    <div class="hero-menu-group">
+                        <h3 class="hero-menu-heading">Drinks</h3>
+                        <ul class="hero-menu-list">
+                            <li class="hero-menu-item">
+                                <img src="soda.png" alt="Soda" class="hero-item-image">
+                                <div class="hero-item-info">
+                                    <span class="hero-item-name">Fizzy Soda</span>
+                                    <span class="hero-item-price">₱79</span>
+                                </div>
+                                <label>
+                                    <input type="number" min="0" value="0" class="hero-item-quantity">
+                                </label>
+                                <button class="hero-add-to-cart">Add to Cart</button>
+                            </li>
+
+                            <li class="hero-menu-item">
+                                <img src="juice.png" alt="Juice" class="hero-item-image">
+                                <div class="hero-item-info">
+                                    <span class="hero-item-name">Strawberry Juice</span>
+                                    <span class="hero-item-price">₱59</span>
+                                </div>
+                                <label>
+                                    <input type="number" min="0" value="0" class="hero-item-quantity">
+                                </label>
+                                <button class="hero-add-to-cart">Add to Cart</button>
+                            </li>
+
+                        <!-- Drink 2 -->
+                        <li class="hero-menu-item">
+                            <img src="cold-coffee.png" alt="Cold Coffee" class="hero-item-image">
+                            <div class="hero-item-info">
+                                <span class="hero-item-name">Cold Coffee</span>
+                                <span class="hero-item-price">₱99</span>
+                            </div>
+                            <label>
+                                <input type="number" min="0" value="0" class="hero-item-quantity">
+                            </label>
+                            <button class="hero-add-to-cart">Add to Cart</button>
+                        </li>
+
+                        <!-- Drink 3 -->
+                        <li class="hero-menu-item">
+                            <img src="coffee.png" alt="Coffee" class="hero-item-image">
+                            <div class="hero-item-info">
+                                <span class="hero-item-name">Hot Coffee</span>
+                                <span class="hero-item-price">₱99</span>
+                            </div>
+                            <label>
+                                <input type="number" min="0" value="0" class="hero-item-quantity">
+                            </label>
+                            <button class="hero-add-to-cart">Add to Cart</button>
+                        </li>
+
+                        </ul>
+                    </div>
+
+                    <!-- Bundle Category -->
+                    <div class="hero-menu-group">
+                        <h3 class="hero-menu-heading">Bundle</h3>
+                        <ul class="hero-menu-list">
+                            <li class="hero-menu-item">
+                                <img src="special-combo.png" alt="Wombo Combo" class="hero-item-image">
+                                <div class="hero-item-info">
+                                    <span class="hero-item-name">Wombo Combo</span>
+                                    <span class="hero-item-price">₱699</span>
+                                </div>
+                                <label>
+                                    <input type="number" min="0" value="0" class="hero-item-quantity">
+                                </label>
+                                <button class="hero-add-to-cart">Add to Cart</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Right Column: Unified Cart -->
+                <aside class="hero-cart-display">
+                    <h4 class="hero-cart-title">Your Cart:</h4>
+                    <ul class="hero-cart-items">
+                        <!-- Items will be added here dynamically -->
+                    </ul>
+
+                    <div class="hero-cart-summary">
+                        <p class="hero-cart-total">Total: ₱0</p>
+                        <p class="hero-cart-customer">Customer: <span id="customerEmail">Guest</span></p>
+                        <button class="hero-checkout-button" id="checkoutBtn">Proceed to Checkout</button>
+                        <p id="checkoutError" style="color: #ff0000; font-family: Bahnschrift, sans-serif; display: none; margin-top: 8px;"></p>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <h2>Contact Us:</h2>
+                <p>📞 Phone: +63 912 345 6789</p>
+                <p>📧 Email: contact@relbys.com</p>
+            </div>
+
+            <div class="copyright">
+                <p>© 2025 Relby's. All rights reserved.</p>
+                <p>This site and its content are protected under Philippine Copyright law (Republic Act No. 8293). Unauthorized use is prohibited.</p>
+            </div>
+        </div>
+    </section>
+</main>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="/auth.js"></script>
+<script src="/main.js"></script>
+<script> document.addEventListener("DOMContentLoaded", () => {
+    const checkoutBtn = document.getElementById("checkoutBtn");
+    const checkoutError = document.getElementById("checkoutError");
+    const addToCartButtons = document.querySelectorAll(".hero-add-to-cart");
+    const cartList = document.querySelector(".hero-cart-items");
+    const totalDisplay = document.querySelector(".hero-cart-total");
+
+    const cart = [];
+
+    // Cart logic
+    addToCartButtons.forEach(button => {
+        button.addEventListener("click", (event) => {
+            event.preventDefault();
+
+            const itemElement = button.closest(".hero-menu-item");
+            if (!itemElement) return;
+
+            const nameEl = itemElement.querySelector(".hero-item-name");
+            const priceEl = itemElement.querySelector(".hero-item-price");
+            const quantityInput = itemElement.querySelector(".hero-item-quantity");
+
+            if (!nameEl || !priceEl || !quantityInput) return;
+
+            const name = nameEl.textContent.trim();
+            const price = priceEl.textContent.trim();
+            const quantity = parseInt(quantityInput.value);
+
+            if (quantity <= 0 || isNaN(quantity)) return;
+
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                cart.push({ name, price, quantity });
+            }
+
+            quantityInput.value = 0;
+            renderCart();
+        });
+    });
+
+    function renderCart() {
+        cartList.innerHTML = "";
+        let total = 0;
+
+        cart.forEach((item, index) => {
+            const li = document.createElement("li");
+            li.innerHTML = `${item.name} × ${item.quantity} — ${item.price}
+                <button class="remove-item" data-index="${index}" style="
+                      margin-left: 10px;
+                      color: red;
+                      background: none;
+                      border: none;
+                      font-weight: bold;
+                      font-size: 20px;
+                      cursor: pointer;
+                      ">×</button>`;
+            cartList.appendChild(li);
+
+            const numericPrice = parseFloat(item.price.replace(/[^\d.]/g, ""));
+            total += numericPrice * item.quantity;
+        });
+
+        if (totalDisplay) {
+            totalDisplay.textContent = `Total: ₱${total.toFixed(2)}`;
+        }
+
+        // 🧹 Attach remove listeners
+        const removeButtons = document.querySelectorAll(".remove-item");
+        removeButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                const index = parseInt(button.getAttribute("data-index"));
+                const item = cart[index];
+                const maxQty = item.quantity;
+
+                const input = prompt(`Remove how many of "${item.name}"? (1–${maxQty})`);
+                const removeQty = parseInt(input);
+
+                if (isNaN(removeQty) || removeQty <= 0) return;
+
+                if (removeQty >= maxQty) {
+                    cart.splice(index, 1); // Remove item entirely
+                } else {
+                    cart[index].quantity -= removeQty; // Reduce quantity
+                }
+
+                renderCart();
+            });
+        });
+
+        checkoutBtn.addEventListener("click", (event) => {
+            event.preventDefault();
+
+            if (cart.length === 0) {
+                checkoutError.textContent = "Your cart is empty!";
+                checkoutError.style.display = "block";
+            } else {
+                checkoutError.style.display = "none";
+                localStorage.setItem("relbyCart", JSON.stringify(cart));
+                window.location.href = "checkout.html";
+            }
+        });
+    }
+});
+</script>
+</body>
+</html>
